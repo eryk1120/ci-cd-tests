@@ -1,0 +1,38 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.3.0
+  hooks:
+  # data serialization formats linters
+  -   id: check-yaml
+  -   id: check-toml
+  -   id: check-json
+  -   id: check-xml
+
+  # general linters
+  -   id: end-of-file-fixer
+  -   id: trailing-whitespace
+  # security
+  # problem using detect-aws-credentials
+  -   id: detect-aws-credentials
+      args: [--allow-missing-credentials]
+  -   id: detect-private-key
+
+  # misc
+  -   id: check-added-large-files
+
+# general python linters
+- repo: https://github.com/psf/black
+  rev: 22.10.0
+  hooks:
+    - id: black
+      name: black (python)
+
+- repo: https://github.com/pycqa/isort
+  rev: 5.12.0
+  hooks:
+  -   id: isort
+      name: isort (python)
+      entry: isort
+      language: python
+      types_or: [cython, pyi, python]
+      minimum_pre_commit_version: '2.9.2'
