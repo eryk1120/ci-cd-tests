@@ -1,9 +1,8 @@
-name: Pytest
+name: pre-commit
 
 steps:
 - uses: actions/checkout@v2
-- name: Set up Python
-  uses: actions/setup-python@v2
+- uses: actions/setup-python@v2
   with:
     python-version: 3.11
 - name: Install Poetry
@@ -11,6 +10,6 @@ steps:
 - name: Install dependencies
   run: |
     poetry install
-- name: Run Pytest
+- name: Run pre-commit
   run: |
-    poetry run pytest
+    pre-commit run --all-files

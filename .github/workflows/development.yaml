@@ -1,0 +1,20 @@
+name: development
+
+on:
+  push:
+    branches: [ main, development, hotfix/*, release/*]
+  pull_request:
+    branches: [ main, development]
+
+runs-on: ubuntu-latest
+
+jobs:
+  pre-commit:
+    name: pre-commit
+    extends: ci-cd-test/.github/workflows/pre_commit.yaml
+  pytest:
+    name: pytest
+    uses: ci-cd-test/.github/workflows/pytest.yaml
+  bandit:
+    name: bandit
+    uses: ci-cd-test/.github/workflows/bandit.yaml
